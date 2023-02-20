@@ -26,22 +26,50 @@
         <label id="Senha" for="password">Senha</label>
         <input type="password" name="password" id="password" placeholder="Digite sua senha">
         <a href="#" id="forgot-pass">Esqueceu a senha?</a>
-        <input class="glow-on-hover" type="button" onclick="logar()" value="Entrar">
+        <input class="glow-on-hover" id="btnLogar" type="button" value="Entrar">
     </form>
 
     <script>
 
-    function logar() {
-        var login = document.getElementById('usuario').value;
-        var senha = document.getElementById('password').value;
+    const usuarios = [
+            {
+                login: 'lucas.blem',
+                pass: 'lblem'
+            },
+            {
+                login: 'administrador',
+                pass: 'admin'
+            },
+            {
+                login: 'visitante',
+                pass: 'visit'
+            }
+        ]
 
-    if (login == "admin" && senha == "admin") {
-        window.location.href = "https://lblem.netlify.app/";
-    } else {
-        alert('Usuário ou senha incorretos');
-    }
-}
+        let botao = document.getElementById('btnLogar');
 
+        botao.addEventListener('click', function logar() {
+            
+            let pegaUsuario = document.getElementById('usuario').value
+            let pegaSenha = document.getElementById('password').value
+            let validaLogin = false
+
+            for(let i in usuarios){
+
+                if(pegaUsuario == usuarios[i].login && pegaSenha ==
+                 usuarios[i].pass){
+                    validaLogin = true 
+                    window.location.href = "https://lblem.netlify.app/";
+                    break
+                }
+            }
+            if(validaLogin == true) {
+                alert('Login efetuado!')
+            } else {
+                alert('Verifique seu e-mail e senha e tente novamente!')
+            }
+
+        } )
     </script>
 
     <div id="social-container">
